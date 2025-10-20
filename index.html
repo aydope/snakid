@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Snakid - Classic Snake Game</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="src/assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="src/assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="src/assets/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    dir="ltr"
+    class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col"
+  >
+    <header
+      class="w-full py-4 px-6 border-b border-gray-200 bg-white shadow-sm flex items-center justify-between"
+    >
+      <h1 class="text-xl font-bold logo-text text-green-700">
+        <a href="/">Snakid Game</a>
+      </h1>
+      <a
+        href="https://github.com/aydope/snakid"
+        target="_blank"
+        class="github-btn"
+      >
+        <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true">
+          <path
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+            0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+            -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21
+            1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+            0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0
+            0 .67-.21 2.2.82.61-.17 1.27-.27 2-.27s1.39.09 2
+            .27c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16
+            1.91.08 2.11.51.56.82 1.27.82 2.15 0 3.07-1.87
+            3.75-3.65 3.95.29.25.54.73.54 1.48 0
+            1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8
+            8 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+          ></path>
+        </svg>
+        Star
+      </a>
+    </header>
+
+    <main
+      class="flex-grow flex flex-col items-center w-11/12 max-w-3xl mx-auto py-10"
+    >
+      <div
+        id="gameContainer"
+        class="relative w-full max-w-[720px] bg-white border border-gray-300 rounded overflow-hidden"
+      >
+        <canvas
+          id="gameCanvas"
+          width="720"
+          height="480"
+          class="block w-full h-auto"
+        ></canvas>
+
+        <div
+          id="overlay"
+          class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-md text-white"
+        >
+          <button
+            id="startBtn"
+            onclick="startGame()"
+            class="px-6 py-3 bg-green-600 rounded-lg font-bold hover:bg-green-700 transition"
+          >
+            START
+          </button>
+        </div>
+
+        <div id="gameControls" class="absolute top-2 left-2 hidden space-x-2">
+          <button
+            onclick="stopGame()"
+            class="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
+          >
+            STOP
+          </button>
+          <button
+            id="fullscreenBtn"
+            class="px-3 py-1 bg-gray-800 text-white text-xs rounded hover:bg-gray-900"
+          >
+            Fullscreen
+          </button>
+          <button
+            id="exitFullscreenBtn"
+            class="px-3 py-1 bg-gray-800 text-white text-xs rounded hover:bg-gray-900 hidden"
+          >
+            Exit
+          </button>
+          <button
+            onclick="toggleInstructions(true)"
+            class="px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700"
+          >
+            Help
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-3 text-sm font-medium">
+        Score: <span id="score">0</span>
+      </div>
+    </main>
+
+    <div
+      id="instructionsPopup"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center hidden"
+    >
+      <div class="bg-white rounded-lg p-6 max-w-sm w-full text-center">
+        <h2 class="text-lg font-bold mb-3">Game Instructions</h2>
+        <p class="text-sm leading-relaxed mb-4">
+          Use the arrow keys on your keyboard to move the snake. Each apple 🍎
+          you eat makes the snake longer and increases your score! Be careful
+          not to hit the walls or yourself.
+        </p>
+        <button
+          onclick="toggleInstructions(false)"
+          class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <footer
+      class="w-full py-4 px-6 border-t border-gray-200 text-xs text-gray-600 text-center bg-white"
+    >
+      Built with ❤️ by
+      <a
+        href="https://github.com/aydope/snakid"
+        class="underline hover:text-black"
+        >Aydope</a
+      >
+    </footer>
+    <script type="text/javascript" src="src/main.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        // Create popup
+        const popup = document.createElement("div");
+        popup.id = "fullscreenPopup";
+        popup.style.cssText = `
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          color: white;
+          font-family: sans-serif;
+          flex-direction: column;
+          gap: 20px;
+        `;
+        popup.innerHTML = `
+          <h2>For the best experience, go fullscreen!</h2>
+          <button style="
+            padding: 10px 20px; 
+            font-size: 16px; 
+            background: #4ade80; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer;"
+            id="goFullscreenBtn"
+          >
+            Go Fullscreen!
+          </button>
+          <button class="cancelBtn">
+            Maybe later
+          </button>
+        `;
+        $.body.appendChild(popup);
+
+        $.getElementById("goFullscreenBtn").addEventListener("click", () => {
+          if (gameContainer.requestFullscreen) {
+            gameContainer.requestFullscreen();
+          } else if (gameContainer.webkitRequestFullscreen) {
+            gameContainer.webkitRequestFullscreen();
+          }
+          popup.remove();
+        });
+
+        $.querySelector(".cancelBtn").addEventListener("click", () => {
+          popup.remove();
+        });
+      });
+    </script>
+    <noscript>Oops! JavaScript is disabled.</noscript>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+:root {
+  --primary-color: #474bff;
+  --secondary-color: #fbfbfb;
+}
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  font-family: PoetsenOne, Kalameh !important;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+@font-face {
+  font-family: PoetsenOne;
+  src: url("assets/font/PoetsenOne-Regular.ttf");
+}
+
+[hidden] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  touch-action: none !important;
+  user-select: none !important;
+}
+
+.loader {
+  background-color: var(--secondary-color);
+  position: fixed;
+  width: 100%;
+  height: 100dvh;
+  inset: 0;
+  z-index: 9999999;
+}
+
+.spinner {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, var(--primary-color) 94%, #0000)
+      top/9px 9px no-repeat,
+    conic-gradient(#0000 30%, var(--primary-color));
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
+  animation: spinner 1s infinite linear;
+}
+
+::selection {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+@keyframes spinner {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #24292f;
+  transition: background-color 0.2s;
+}
+.github-btn:hover {
+  background-color: #f6f8fa;
+}
+.github-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
