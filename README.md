@@ -44,7 +44,9 @@ Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**, wit
 ```bash
 git clone https://github.com/aydope/snakid.git
 ```
+
 - Open the folder:
+
 ```bash
 cd snakid
 ```
