@@ -1,4 +1,4 @@
-# 🐍 Snakid - A Simple Texture-Based Snake Game
+# 🐍 Snakid - A Simple Classic Texture-Based Snake Game
 
 Welcome to **Snakid**, a modern twist on the classic Snake game!  
 Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**, with added texture-based visuals and a clean, glassy UI.
