@@ -1,4 +1,4 @@
-# 🐍 Snakid - A Simple Classic Texture-Based Snake Game
+# 🐍 Snakid – Simple Snake Game
 
 Welcome to **Snakid**, a modern twist on the classic Snake game!  
 Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**, with added texture-based visuals and a clean, glassy UI.
@@ -7,13 +7,15 @@ Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**, wit
 
 ![Snakid Screenshot](./src/assets/preview/snakid-preview.png)
 
+---
+
 ## 🎮 Features
 
-- 🍏 Classic snake mechanics with smooth controls
-- 🖱️ Control the snake with your **keyboard**
-- 📱 Swipe gestures supported on **mobile**
-- 🎨 Beautiful glassmorphism-inspired UI
-- ⚡ Fast performance with minimal dependencies
+- Classic snake gameplay
+- Smooth and easy controls
+- Keyboard support on desktop
+- Swipe controls on mobile
+- Clean glass-style design
 
 ---
 
@@ -35,24 +37,27 @@ Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**, wit
 
 ---
 
-## 🚀 Getting Started
+## 🚀 How to Play Locally
 
-Clone the repo and open `index.html` in your browser:
+- Download or clone the repo:
 
 ```bash
-git clone https://aydope.github.io/snakid/
+git clone https://github.com/aydope/snakid.git
+```
+- Open the folder:
+```bash
 cd snakid
-open index.html # or use Live Server
 ```
 
----
-
-## 🌟 Support & Contributions
-
-If you like Snakid, feel free to ⭐️ this repo and share it with your friends!
-You can also contribute by forking the repo and submitting a pull request.
-Every little support means a lot! 🙌
+- Open `index.html` in your browser (or use Live Server).
 
 ---
 
-#### Got questions? [Drop me a message anytime!](https://discord.gg/f9FwaqMvbW)
+## 🌟 Support
+
+If you enjoy Snakid, give it a ⭐ and share it with friends!
+You can also fork the project and suggest improvements.
+
+---
+
+#### Questions? [Chat on Discord](https://discord.gg/f9FwaqMvbW)
