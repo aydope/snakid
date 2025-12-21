@@ -1,63 +1,37 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
-  <head>
-    <title>Snakid - Classic Snake Game</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="src/assets/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="src/assets/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="src/assets/favicon/favicon-16x16.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="src/style.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
 
-  <body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
-    <div class="loader">
-      <div class="spinner"></div>
-    </div>
-    <!-- Header -->
-    <header
-      class="w-full py-4 px-6 border-b border-gray-200 bg-white shadow-sm flex items-center justify-between"
-    >
-      <h1 class="text-xl font-bold logo-text text-green-700">
-        <a href="/">Snakid 🐍</a>
-      </h1>
-      <a
-        href="https://github.com/aydope/snakid"
-        target="_blank"
-        class="github-btn"
-      >
-        <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true">
-          <path
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+<head>
+  <title>Snakid</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="apple-touch-icon" sizes="180x180" href="src/assets/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="src/assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="src/assets/favicon/favicon-16x16.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="src/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header
+    class="mt-[30px] mb-[30px] mx-auto w-[560px] py-4 px-6 border border-slate-200 bg-slate-50 flex items-center justify-between rounded-[40px] [clip-path:inset(0_round_40px)]">
+    <h1 class="text-xl font-semibold text-slate-700">
+      <a href="/" class="hover:text-slate-900 transition">Snakid</a>
+    </h1>
+    <a href="https://github.com/aydope/snakid" target="_blank"
+      class="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition">
+      <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true" class="w-4 h-4 fill-current">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
             0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
             -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21
             1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
@@ -67,103 +41,54 @@
             1.91.08 2.11.51.56.82 1.27.82 2.15 0 3.07-1.87
             3.75-3.65 3.95.29.25.54.73.54 1.48 0
             1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8
-            8 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-          ></path>
-        </svg>
-        Star
-      </a>
-    </header>
+            8 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+      </svg>
+      Star
+    </a>
+  </header>
 
-    <!-- Main -->
-    <main
-      class="flex-grow flex flex-col items-center w-11/12 max-w-3xl mx-auto py-4 overflow-hidden"
-    >
-      <div
-        id="gameContainer"
-        class="relative w-full max-w-[720px] bg-white border border-gray-300 rounded overflow-hidden"
-      >
-        <canvas
-          id="gameCanvas"
-          width="720"
-          height="480"
-          class="block w-full h-auto"
-        ></canvas>
+  <!-- Main -->
+  <main class="flex-grow flex flex-col items-center w-11/12 max-w-3xl mx-auto py-4 overflow-hidden">
+    <div id="gameContainer"
+      class="relative w-full max-w-[560px] bg-slate-50 border border-slate-300 rounded overflow-hidden">
+      <canvas id="gameCanvas" width="720" height="480" class="block w-full h-auto bg-slate-100"></canvas>
 
-        <!-- Overlay -->
-        <div
-          id="overlay"
-          class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-md text-white"
-        >
-          <button
-            id="startBtn"
-            onclick="startGame()"
-            class="px-6 py-3 bg-green-600 rounded-lg font-bold hover:bg-green-700 transition"
-          >
-            START
-          </button>
-        </div>
-
-        <!-- Controls -->
-        <div id="gameControls" class="absolute top-2 left-2 hidden space-x-2">
-          <button
-            onclick="stopGame()"
-            class="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
-          >
-            STOP
-          </button>
-          <button
-            id="exitFullscreenBtn"
-            class="px-3 py-1 bg-gray-800 text-white text-xs rounded hover:bg-gray-900 hidden"
-          >
-            Exit
-          </button>
-          <button
-            onclick="toggleInstructions(true)"
-            class="px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700"
-          >
-            Help
-          </button>
-        </div>
+      <!-- Overlay -->
+      <div id="overlay"
+        class="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/40 backdrop-blur text-slate-100">
+        <button id="startBtn" onclick="startGame()"
+          class="px-6 py-3 bg-slate-700 text-slate-100 rounded-lg font-semibold hover:bg-slate-800 transition">
+          START
+        </button>
       </div>
-    </main>
 
-    <!-- Instructions Popup -->
-    <div
-      id="instructionsPopup"
-      class="fixed inset-0 bg-black/50 flex items-center justify-center hidden"
-    >
-      <div class="bg-white rounded-lg p-6 max-w-sm w-full text-center">
-        <h2 class="text-lg font-bold mb-3">Game Instructions</h2>
-        <p class="text-sm leading-relaxed mb-4">
-          Use the arrow keys on your keyboard to move the snake. Each apple 🍎
-          you eat makes the snake longer and increases your score! Be careful
-          not to hit the walls or yourself.
-        </p>
-        <button
-          onclick="toggleInstructions(false)"
-          class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800"
-        >
-          Close
+      <!-- Controls -->
+      <div id="gameControls" class="absolute top-2 left-2 hidden space-x-2">
+        <button onclick="stopGame()"
+          class="px-3 py-1 bg-slate-600 text-slate-100 text-xs rounded hover:bg-slate-700 transition">
+          STOP
+        </button>
+        <button id="exitFullscreenBtn"
+          class="px-3 py-1 bg-slate-500 text-slate-100 text-xs rounded hover:bg-slate-600 transition hidden">
+          Exit
         </button>
       </div>
     </div>
+  </main>
 
-    <!-- Footer -->
-    <footer
-      class="w-full py-4 px-6 border-t border-gray-200 text-xs text-gray-600 text-center bg-white"
-    >
-      Built with ❤️ by
-      <a
-        href="https://github.com/aydope/snakid"
-        class="underline hover:text-black"
-        >Aydope</a
-      >
-    </footer>
+  <!-- Footer -->
+  <footer class="w-full py-4 px-6 border-t border-slate-200 text-xs text-slate-500 text-center bg-slate-50">
+    Built with ❤️ by
+    <a href="https://github.com/aydope/snakid" class="underline hover:text-slate-700 transition">Aydope</a>
+  </footer>
 
-    <!-- Scripts -->
-    <script type="text/javascript" src="src/main.js"></script>
-    <noscript>
-      <p class="text-center text-red-600 mt-4">Oops! JavaScript is disabled.</p>
-    </noscript>
-  </body>
+  <!-- Scripts -->
+  <script type="text/javascript" src="src/main.js"></script>
+  <noscript>
+    <p class="text-center text-slate-600 mt-4">
+      Oops! JavaScript is disabled.
+    </p>
+  </noscript>
+</body>
+
 </html>
