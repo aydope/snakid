@@ -1,11 +1,11 @@
 # 🐍 Snakid – Simple Snake Game
 
-Welcome to **Snakid**, a modern twist on the classic Snake game!  
+Welcome to **Snakid**, a modern twist on the classic Snake game!
 Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**, with added texture-based visuals and a clean, glassy UI.
 
 [▶️ Play Now](https://aydope.github.io/snakid/)
 
-![Snakid Screenshot](./src/assets/preview/snakid-preview.png)
+![Snakid Screenshot](./src/assets/preview/preview%20v1.2.1.png)
 
 ---
 
