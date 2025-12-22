@@ -1,30 +1,12 @@
-# 🐍 Snakid – Simple Snake Game
+# 🐍 Snakid v1.2.1
 
-Welcome to **Snakid**, a modern twist on the classic Snake game!
-Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**, with added texture-based visuals and a clean, glassy UI.
+Welcome to **Snakid**, a classic Snake game!
+<br>
+Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**.
 
 [▶️ Play Now](https://aydope.github.io/snakid/)
 
 ![Snakid Screenshot](./src/assets/preview/preview%20v1.2.1.png)
-
----
-
-## 🎮 Features
-
-- Classic snake gameplay
-- Smooth and easy controls
-- Keyboard support on desktop
-- Swipe controls on mobile
-- Clean glass-style design
-
----
-
-## 🛠️ Tech Stack
-
-- Vanilla **JavaScript (ES6+)**
-- **HTML5 Canvas** for rendering
-- **CSS3** with custom fonts and `backdrop-filter` effects
-- Font Awesome + Normalize.css + Reset.css
 
 ---
 
@@ -59,7 +41,3 @@ cd snakid
 
 If you enjoy Snakid, give it a ⭐ and share it with friends!
 You can also fork the project and suggest improvements.
-
----
-
-#### Questions? [Chat on Discord](https://discord.gg/f9FwaqMvbW)
