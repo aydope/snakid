@@ -182,7 +182,7 @@ const startGame = () => {
         Math.min(8, Math.max(0, Math.floor(Math.random() * max)));
       this.position = new Vector2(
         randomCoord(GRID_SIZE),
-        randomCoord(GRID_SIZE)
+        randomCoord(GRID_SIZE),
       );
     }
   }
@@ -243,7 +243,7 @@ const startGame = () => {
               col * CELL_SIZE,
               row * CELL_SIZE,
               CELL_SIZE,
-              CELL_SIZE
+              CELL_SIZE,
             );
           }
         }
@@ -285,8 +285,31 @@ const startGame = () => {
     }
   });
 
+  document.querySelectorAll(".control-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const { direction } = game.snake;
+      const dir = btn.textContent.trim();
+
+      switch (dir) {
+        case "↑":
+          if (direction.y !== 1) game.snake.direction = new Vector2(0, -1);
+          break;
+        case "→":
+          if (direction.x !== -1) game.snake.direction = new Vector2(1, 0);
+          break;
+        case "↓":
+          if (direction.y !== -1) game.snake.direction = new Vector2(0, 1);
+          break;
+        case "←":
+          if (direction.x !== 1) game.snake.direction = new Vector2(-1, 0);
+          break;
+      }
+    });
+  });
+
   $.addEventListener("keydown", ({ key }) => {
     const { direction } = game.snake;
+
     const controls = {
       ArrowUp: new Vector2(0, -1),
       ArrowRight: new Vector2(1, 0),
