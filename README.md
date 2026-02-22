@@ -1,4 +1,4 @@
-# 🐍 Snakid v1.2.1
+# 🐍 Snakid v1.3.1
 
 Welcome to **Snakid**, a classic Snake game!
 <br>
@@ -16,6 +16,9 @@ Built with ❤️ for the web using **HTML5**, **CSS3**, and **JavaScript**.
 | ------- | ---------------------- |
 | Desktop | Arrow keys `↑ ↓ ← →`   |
 | Mobile  | Swipe in any direction |
+| Mobile  | On-screen arrow buttons (↑ ↓ ← →) below game canvas |
+
+> Mobile controls appear **only on touch devices**.
 
 ---
 
