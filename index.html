@@ -3,197 +3,354 @@
   <head>
     <title>Snakid</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="title" content="Snakid - Fun JavaScript Snake Game" />
-    <meta
-      name="description"
-      content="Snakid is a fun, interactive snake game built with JavaScript, HTML5 Canvas, and TailwindCSS. Play and enjoy!"
-    />
-    <meta
-      name="keywords"
-      content="Snake Game, JavaScript Game, Canvas Game, HTML5, Snakid, Web Game, Aydope"
-    />
+    <meta name="description" content="Snakid is a fun, interactive snake game built with JavaScript, HTML5 Canvas, and TailwindCSS. Play and enjoy!" />
+    <meta name="keywords" content="Snake Game, JavaScript Game, Canvas Game, HTML5, Snakid, Web Game, Aydope" />
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aydope.github.io/snakid" />
     <meta property="og:title" content="Snakid - Fun JavaScript Snake Game" />
-    <meta
-      property="og:description"
-      content="Snakid is a fun, interactive snake game built with JavaScript, HTML5 Canvas, and TailwindCSS. Play and enjoy!"
-    />
-    <meta
-      property="og:image"
-      content="src/assets/favicon/apple-touch-icon.png"
-    />
+    <meta property="og:description" content="Snakid is a fun, interactive snake game built with JavaScript, HTML5 Canvas, and TailwindCSS. Play and enjoy!" />
+    <meta property="og:image" content="src/assets/favicon/apple-touch-icon.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://aydope.github.io/snakid" />
     <meta name="twitter:title" content="Snakid - Fun JavaScript Snake Game" />
-    <meta
-      name="twitter:description"
-      content="Snakid is a fun, interactive snake game built with JavaScript, HTML5 Canvas, and TailwindCSS. Play and enjoy!"
-    />
-    <meta
-      name="twitter:image"
-      content="src/assets/favicon/apple-touch-icon.png"
-    />
-    <meta name="theme-color" content="#1e293b" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="src/assets/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="src/assets/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="src/assets/favicon/favicon-16x16.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
+    <meta name="twitter:description" content="Snakid is a fun, interactive snake game built with JavaScript, HTML5 Canvas, and TailwindCSS. Play and enjoy!" />
+    <meta name="twitter:image" content="src/assets/favicon/apple-touch-icon.png" />
+    <meta name="theme-color" content="#030712" />
+    <link rel="apple-touch-icon" sizes="180x180" href="src/assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="src/assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="src/assets/favicon/favicon-16x16.png" />
+    <link rel="stylesheet" href="./src/normalize.min.css" />
+    <link rel="stylesheet" href="./src/reset.min.css" />
+    <link href="./src/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="src/style.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./src/tailwind.min.js"></script>
   </head>
 
-  <body
-    class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col"
-  >
-    <div class="loader">
-      <div class="spinner"></div>
+  <body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center" id="bodyElement">
+
+    <!-- Loader -->
+    <div class="loader fixed inset-0 z-[100] flex items-center justify-center bg-gray-950 transition-opacity duration-500">
+      <div class="w-10 h-10 border-2 border-gray-700 border-t-emerald-400 rounded-full animate-spin"></div>
     </div>
 
     <!-- Header -->
-    <header
-      class="mt-8 mb-8 mx-auto w-full max-w-[560px] py-4 px-6 border border-slate-200 bg-slate-50 flex items-center justify-between rounded-[40px] [clip-path:inset(0_round_40px)]"
-    >
-      <h1 class="text-xl font-semibold text-slate-700">
-        <a href="/" class="hover:text-slate-900 transition">Snakid</a>
-      </h1>
-      <a
-        href="https://github.com/aydope/snakid"
-        target="_blank"
-        class="flex items-center gap-2 text-slate-600 hover:text-slate-800 transition"
-      >
-        <svg
-          viewBox="0 0 16 16"
-          version="1.1"
-          aria-hidden="true"
-          class="w-4 h-4 fill-current"
-        >
-          <path
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-            0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-            -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21
-            1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
-            0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0
-            0 .67-.21 2.2.82.61-.17 1.27-.27 2-.27s1.39.09 2
-            .27c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16
-            1.91.08 2.11.51.56.82 1.27.82 2.15 0 3.07-1.87
-            3.75-3.65 3.95.29.25.54.73.54 1.48 0
-            1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8
-            8 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-          ></path>
+    <header class="w-full max-w-[720px] px-4 pt-6 pb-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
         </svg>
-        Star
-      </a>
+        <h1 class="text-xl font-bold text-white tracking-tight">Snakid</h1>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Player Name -->
+        <span id="playerNameDisplay" class="hidden text-sm text-gray-400 bg-gray-800/50 px-3 py-1.5 rounded-lg">
+          Player: <span id="playerNameValue"></span>
+        </span>
+
+        <!-- Hamburger Menu Button -->
+        <button id="menuToggle" onclick="toggleMenu()" class="w-9 h-9 flex flex-col items-center justify-center gap-1.5 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg transition-colors">
+          <span class="block w-4 h-0.5 bg-gray-300 rounded-full transition-all" id="bar1"></span>
+          <span class="block w-4 h-0.5 bg-gray-300 rounded-full transition-all" id="bar2"></span>
+          <span class="block w-3 h-0.5 bg-gray-300 rounded-full transition-all" id="bar3"></span>
+        </button>
+      </div>
     </header>
 
-    <!-- Main -->
-    <main
-      class="flex-grow flex flex-col items-center w-11/12 max-w-3xl mx-auto py-4 overflow-hidden"
-    >
-      <div
-        id="gameContainer"
-        class="relative w-full max-w-[560px] bg-slate-50 border border-slate-300 rounded overflow-hidden"
-      >
-        <canvas
-          id="gameCanvas"
-          width="720"
-          height="480"
-          class="block w-full h-auto bg-slate-100"
-        ></canvas>
+    <!-- Main Game Area -->
+    <main class="flex-grow flex flex-col items-center w-full max-w-[720px] px-4 py-2">
 
-        <!-- Overlay -->
-        <div
-          id="overlay"
-          class="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/40 backdrop-blur text-slate-100"
-        >
-          <button
-            id="startBtn"
-            onclick="startGame()"
-            class="px-6 py-3 bg-slate-700 text-slate-100 rounded-lg font-semibold hover:bg-slate-800 transition"
-          >
-            START
-          </button>
+      <!-- Stats Bar (outside canvas) -->
+      <div id="statsBar" class="hidden w-full flex items-center justify-between mb-3 px-2">
+        <div class="flex items-center gap-4">
+          <!-- Score -->
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-red-400" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span id="scoreDisplay" class="text-sm font-semibold text-white tabular-nums">0</span>
+          </div>
         </div>
-
-        <!-- Controls -->
-        <div id="gameControls" class="absolute top-2 left-2 hidden space-x-2">
-          <button
-            onclick="stopGame()"
-            class="px-3 py-1 bg-slate-600 text-slate-100 text-xs rounded hover:bg-slate-700 transition"
-          >
-            STOP
-          </button>
-          <button
-            id="exitFullscreenBtn"
-            class="px-3 py-1 bg-slate-500 text-slate-100 text-xs rounded hover:bg-slate-600 transition hidden"
-          >
-            Exit
-          </button>
+        <!-- FPS & Ping -->
+        <div id="perfStats" class="text-xs text-gray-500 font-mono">
+          FPS: <span id="fpsValue">0</span> &middot; Ping: <span id="pingValue">0</span>ms
         </div>
       </div>
 
-      <div
-        id="mobileControls"
-        class="mt-4 flex flex-col items-center justify-center gap-2"
-      >
-        <div class="flex gap-2">
-          <button class="control-btn">↑</button>
+      <!-- Game Canvas Container -->
+      <div class="relative w-full bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/50">
+        <div id="gameContainer" class="relative aspect-video">
+          <canvas id="gameCanvas" class="block w-full h-full"></canvas>
+
+          <!-- Start Overlay -->
+          <div id="overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-950/80 backdrop-blur-sm transition-all duration-500">
+            <div class="text-center px-8">
+              <svg class="w-20 h-20 mx-auto text-emerald-400 mb-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <h2 class="text-3xl font-bold text-white mb-2">Snakid</h2>
+              <p class="text-gray-400 text-sm mb-8">Classic Snake Game</p>
+              <button
+                id="startBtn"
+                onclick="handleStartClick()"
+                class="px-10 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-gray-950 rounded-xl font-bold text-base active:scale-95 transition-all duration-200 shadow-lg shadow-emerald-500/20"
+              >
+                Start Game
+              </button>
+              <button
+                onclick="toggleInstructions(true)"
+                class="block mx-auto mt-4 text-sm text-gray-500 hover:text-gray-300 transition-colors"
+              >
+                How to Play?
+              </button>
+            </div>
+          </div>
+
+          <!-- Stop Button -->
+          <div id="gameControls" class="hidden absolute top-3 left-3">
+            <button
+              onclick="stopGame()"
+              class="w-8 h-8 flex items-center justify-center bg-gray-900/80 hover:bg-red-500/80 rounded-lg transition-colors group"
+              title="Stop Game"
+            >
+              <svg class="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="6" width="12" height="12" rx="2"/>
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="flex gap-2">
-          <button class="control-btn">←</button>
-          <button class="control-btn">↓</button>
-          <button class="control-btn">→</button>
+      </div>
+
+      <!-- Mobile Directional Pad -->
+      <div id="mobileControls" class="hidden mt-6 flex flex-col items-center gap-2">
+        <button class="control-btn w-14 h-14 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-xl active:scale-90 transition-all">
+          <svg class="w-6 h-6 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m-7 7l7-7 7 7"/>
+          </svg>
+        </button>
+        <div class="flex gap-3">
+          <button class="control-btn w-14 h-14 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-xl active:scale-90 transition-all">
+            <svg class="w-6 h-6 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <button class="control-btn w-14 h-14 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-xl active:scale-90 transition-all">
+            <svg class="w-6 h-6 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7l-7-7-7 7"/>
+            </svg>
+          </button>
+          <button class="control-btn w-14 h-14 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-xl active:scale-90 transition-all">
+            <svg class="w-6 h-6 text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
         </div>
       </div>
     </main>
 
+    <!-- Slide-out Menu -->
+    <div id="sideMenu" class="fixed inset-y-0 right-0 z-50 w-80 bg-gray-900 border-l border-gray-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto">
+      <div class="flex flex-col h-full p-6">
+        <!-- Menu Header -->
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-lg font-semibold text-white">Menu</h3>
+          <button onclick="toggleMenu()" class="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="space-y-2">
+          <!-- Player Section -->
+          <div id="menuPlayerSection" class="mb-4 p-3 bg-gray-800/50 rounded-xl">
+            <p class="text-xs text-gray-500 mb-1">Player</p>
+            <p id="menuPlayerName" class="text-sm text-white font-medium">Not set</p>
+            <button id="changeNameBtn" onclick="showNameModal()" class="mt-2 text-xs text-emerald-400 hover:text-emerald-300 transition-colors">Set Name</button>
+          </div>
+
+          <!-- Stop Game -->
+          <button onclick="stopGame(); toggleMenu();" class="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-300 hover:bg-gray-800 rounded-xl transition-colors">
+            <svg class="w-5 h-5 text-red-400" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="6" width="12" height="12" rx="2"/>
+            </svg>
+            Stop Game
+          </button>
+
+          <!-- Speed Control -->
+          <div class="px-4 py-3">
+            <p class="text-xs text-gray-500 mb-2">Game Speed</p>
+            <div class="flex gap-2">
+              <button onclick="setGameSpeed('slow')" id="speedSlow" class="flex-1 py-1.5 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors">Slow</button>
+              <button onclick="setGameSpeed('normal')" id="speedNormal" class="flex-1 py-1.5 text-xs bg-emerald-500/20 text-emerald-400 rounded-lg transition-colors">Normal</button>
+              <button onclick="setGameSpeed('fast')" id="speedFast" class="flex-1 py-1.5 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors">Fast</button>
+            </div>
+          </div>
+
+          <!-- How to Play -->
+          <button onclick="toggleInstructions(true); toggleMenu();" class="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-300 hover:bg-gray-800 rounded-xl transition-colors">
+            <svg class="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            How to Play
+          </button>
+        </div>
+
+        <!-- Credit -->
+        <div class="mt-4 p-3 bg-gray-800/30 rounded-xl">
+          <p class="text-xs text-gray-500 leading-relaxed">
+            Inspired by
+            <a href="https://en.wikipedia.org/wiki/Snake_(video_game_genre)" target="_blank" class="text-emerald-400 hover:underline">Google Snake Game</a>
+          </p>
+        </div>
+
+        <!-- Social Links -->
+        <div class="mt-auto pt-6 border-t border-gray-800">
+          <p class="text-xs text-gray-500 mb-3">Connect with me</p>
+          <div class="space-y-1">
+            <a href="https://github.com/aydope" target="_blank" class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-xl transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://t.me/aydope" target="_blank" class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-xl transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.938z"/></svg>
+              Telegram
+            </a>
+            <a href="https://instagram.com/aydope" target="_blank" class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-xl transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              Instagram
+            </a>
+            <a href="https://linkedin.com/in/aydope" target="_blank" class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-xl transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Backdrop -->
+    <div id="menuBackdrop" onclick="toggleMenu()" class="fixed inset-0 z-40 bg-black/50 hidden transition-opacity duration-300"></div>
+
+    <!-- Game Over Modal -->
+    <div id="gameOverModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300">
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl w-full max-w-[340px] text-center transform transition-all duration-300">
+        <svg class="w-16 h-16 mx-auto text-red-400 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+        </svg>
+        <h2 class="text-2xl font-bold text-white mb-1">Game Over</h2>
+        <p class="text-gray-400 text-sm mb-2">Your Score</p>
+        <p id="finalScore" class="text-6xl font-bold text-emerald-400 mb-6 tabular-nums">0</p>
+        <div class="space-y-3">
+          <button
+            onclick="restartGame()"
+            class="w-full py-3.5 px-6 bg-emerald-500 hover:bg-emerald-400 text-gray-950 rounded-xl font-bold text-base active:scale-95 transition-all duration-200 shadow-lg shadow-emerald-500/20"
+          >
+            Play Again
+          </button>
+          <button
+            onclick="goToHome()"
+            class="w-full py-3 px-6 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-xl font-medium text-sm active:scale-95 transition-all"
+          >
+            Home
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions Modal -->
+    <div id="instructionsPopup" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300">
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl w-full max-w-[340px] text-center">
+        <h3 class="text-xl font-bold text-white mb-6">How to Play</h3>
+        <div class="space-y-5 text-left mb-6">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-emerald-500/10 rounded-xl">
+              <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white">Swipe or Arrow Keys</p>
+              <p class="text-xs text-gray-500 mt-0.5">Use touch, WASD or arrows to move</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-red-500/10 rounded-xl">
+              <svg class="w-5 h-5 text-red-400" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white">Eat Apples</p>
+              <p class="text-xs text-gray-500 mt-0.5">Grow longer and increase your score</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-orange-500/10 rounded-xl">
+              <svg class="w-5 h-5 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white">Avoid Collisions</p>
+              <p class="text-xs text-gray-500 mt-0.5">Don't hit walls or yourself</p>
+            </div>
+          </div>
+        </div>
+        <button
+          onclick="toggleInstructions(false)"
+          class="w-full py-3.5 px-6 bg-gray-800 hover:bg-gray-700 text-white rounded-xl font-semibold text-sm active:scale-95 transition-all"
+        >
+          Got it
+        </button>
+      </div>
+    </div>
+
+    <!-- Name Modal -->
+    <div id="nameModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+      <div class="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl w-full max-w-[340px] text-center">
+        <h3 class="text-xl font-bold text-white mb-2">What's your name?</h3>
+        <p class="text-gray-400 text-sm mb-6">Enter your player name</p>
+        <input
+          id="nameInput"
+          type="text"
+          maxlength="20"
+          placeholder="Player name..."
+          class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white text-center focus:outline-none focus:border-emerald-500 transition-colors mb-4"
+        />
+        <button onclick="savePlayerName()" class="w-full py-3 px-6 bg-emerald-500 hover:bg-emerald-400 text-gray-950 rounded-xl font-bold active:scale-95 transition-all">
+          Save & Play
+        </button>
+      </div>
+    </div>
+
     <!-- Footer -->
-    <footer
-      class="w-full py-4 px-6 border-t border-slate-200 text-xs text-slate-500 text-center bg-slate-50"
-    >
-      Built with ❤️ by
-      <a
-        href="https://github.com/aydope/snakid"
-        class="underline hover:text-slate-700 transition"
-        >Aydope</a
-      >
+    <footer class="w-full max-w-[720px] px-4 py-4 text-center">
+      <p class="text-xs text-gray-600">
+        Built by
+        <a href="https://github.com/aydope" class="underline hover:text-gray-400 transition-colors">Aydope</a>
+      </p>
     </footer>
 
-    <!-- Scripts -->
     <script type="text/javascript" src="src/main.js"></script>
     <noscript>
-      <p class="text-center text-slate-600 mt-4">
-        Oops! JavaScript is disabled.
-      </p>
+      <p class="text-center text-gray-400 mt-4">JavaScript is required to play this game.</p>
     </noscript>
+
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var loader = document.querySelector('.loader');
+          if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(function() { loader.remove(); }, 500);
+          }
+        }, 800);
+      });
+    </script>
   </body>
 </html>
