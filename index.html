@@ -5,10 +5,9 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
 
-    <!-- Primary Meta Tags -->
     <meta name="title" content="Snakid - Fun JavaScript Snake Game" />
     <meta
       name="description"
@@ -22,10 +21,8 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#030712" />
 
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://aydope.github.io/snakid" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aydope.github.io/snakid" />
     <meta property="og:title" content="Snakid - Fun JavaScript Snake Game" />
@@ -42,7 +39,6 @@
     <meta property="og:site_name" content="Snakid" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://aydope.github.io/snakid" />
     <meta name="twitter:title" content="Snakid - Fun JavaScript Snake Game" />
@@ -56,7 +52,6 @@
     />
     <meta name="twitter:creator" content="@aydope" />
 
-    <!-- Favicon -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -75,10 +70,8 @@
       href="src/assets/favicon/favicon-16x16.png"
     />
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="./src/normalize.min.css" />
     <link rel="stylesheet" href="./src/reset.min.css" />
-    <link href="./src/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./src/style.css" />
     <script src="./src/tailwind.min.js"></script>
   </head>
@@ -87,7 +80,6 @@
     class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center"
     id="bodyElement"
   >
-    <!-- Loader -->
     <div
       class="loader fixed inset-0 z-[100] flex items-center justify-center bg-gray-950 transition-opacity duration-500"
     >
@@ -96,7 +88,6 @@
       ></div>
     </div>
 
-    <!-- Header -->
     <header
       class="w-full max-w-[720px] px-4 pt-6 pb-3 flex items-center justify-between"
     >
@@ -118,7 +109,6 @@
       </div>
 
       <div class="flex items-center gap-3">
-        <!-- Player Name -->
         <span
           id="playerNameDisplay"
           class="hidden text-sm text-gray-400 bg-gray-800/50 px-3 py-1.5 rounded-lg"
@@ -126,9 +116,12 @@
           Player: <span id="playerNameValue"></span>
         </span>
 
-        <!-- Hamburger Menu Button -->
         <button
           id="menuToggle"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="sideMenu"
+          aria-expanded="false"
           onclick="toggleMenu()"
           class="w-9 h-9 flex flex-col items-center justify-center gap-1.5 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg transition-colors"
         >
@@ -148,17 +141,14 @@
       </div>
     </header>
 
-    <!-- Main Game Area -->
     <main
       class="flex-grow flex flex-col items-center w-full max-w-[720px] px-4 py-2"
     >
-      <!-- Stats Bar (outside canvas) -->
       <div
         id="statsBar"
         class="hidden w-full flex items-center justify-between mb-3 px-2"
       >
         <div class="flex items-center gap-4">
-          <!-- Score -->
           <div class="flex items-center gap-1.5">
             <svg
               class="w-4 h-4 text-red-400"
@@ -173,22 +163,31 @@
               >0</span
             >
           </div>
+          <div class="flex items-center gap-1.5 text-xs text-gray-500">
+            <span>Best</span>
+            <span
+              id="bestDisplay"
+              class="font-semibold text-gray-300 tabular-nums"
+              >0</span
+            >
+          </div>
         </div>
-        <!-- FPS & Ping -->
         <div id="perfStats" class="text-xs text-gray-500 font-mono">
-          FPS: <span id="fpsValue">0</span> &middot; Ping:
-          <span id="pingValue">0</span>ms
+          FPS: <span id="fpsValue">0</span>
         </div>
       </div>
 
-      <!-- Game Canvas Container -->
       <div
         class="relative w-full bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/50"
       >
-        <div id="gameContainer" class="relative aspect-video">
-          <canvas id="gameCanvas" class="block w-full h-full"></canvas>
+        <div id="gameContainer" class="relative">
+          <canvas
+            id="gameCanvas"
+            class="block w-full h-full"
+            role="img"
+            aria-label="Snake game board"
+          ></canvas>
 
-          <!-- Start Overlay -->
           <div
             id="overlay"
             class="absolute inset-0 flex flex-col items-center justify-center bg-gray-950/80 backdrop-blur-sm transition-all duration-500"
@@ -225,12 +224,50 @@
             </div>
           </div>
 
-          <!-- Stop Button -->
-          <div id="gameControls" class="hidden absolute top-3 left-3">
+          <div
+            id="pauseOverlay"
+            class="hidden absolute inset-0 flex-col items-center justify-center bg-gray-950/70 backdrop-blur-sm"
+          >
+            <p class="text-3xl font-bold text-white mb-1">Paused</p>
+            <p class="text-gray-400 text-sm mb-6">Press Space to resume</p>
             <button
+              type="button"
+              onclick="resumeGame()"
+              class="px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-gray-950 rounded-xl font-bold active:scale-95 transition-all"
+            >
+              Resume
+            </button>
+          </div>
+
+          <div
+            id="gameControls"
+            class="hidden absolute top-3 left-3 flex gap-2"
+          >
+            <button
+              type="button"
+              onclick="
+                togglePause();
+                this.blur();
+              "
+              class="w-8 h-8 flex items-center justify-center bg-gray-900/80 hover:bg-gray-700/80 rounded-lg transition-colors group"
+              title="Pause (Space)"
+              aria-label="Pause game"
+            >
+              <svg
+                class="w-4 h-4 text-gray-400 group-hover:text-white transition-colors"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <rect x="6" y="5" width="4" height="14" rx="1" />
+                <rect x="14" y="5" width="4" height="14" rx="1" />
+              </svg>
+            </button>
+            <button
+              type="button"
               onclick="stopGame()"
               class="w-8 h-8 flex items-center justify-center bg-gray-900/80 hover:bg-red-500/80 rounded-lg transition-colors group"
               title="Stop Game"
+              aria-label="Stop game"
             >
               <svg
                 class="w-4 h-4 text-gray-400 group-hover:text-white transition-colors"
@@ -244,12 +281,14 @@
         </div>
       </div>
 
-      <!-- Mobile Directional Pad -->
       <div
         id="mobileControls"
         class="hidden mt-6 flex flex-col items-center gap-2"
       >
         <button
+          type="button"
+          data-dir="up"
+          aria-label="Move up"
           class="control-btn w-14 h-14 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-xl active:scale-90 transition-all"
         >
           <svg
@@ -268,6 +307,9 @@
         </button>
         <div class="flex gap-3">
           <button
+            type="button"
+            data-dir="left"
+            aria-label="Move left"
             class="control-btn w-14 h-14 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-xl active:scale-90 transition-all"
           >
             <svg
@@ -285,6 +327,9 @@
             </svg>
           </button>
           <button
+            type="button"
+            data-dir="down"
+            aria-label="Move down"
             class="control-btn w-14 h-14 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-xl active:scale-90 transition-all"
           >
             <svg
@@ -302,6 +347,9 @@
             </svg>
           </button>
           <button
+            type="button"
+            data-dir="right"
+            aria-label="Move right"
             class="control-btn w-14 h-14 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-xl active:scale-90 transition-all"
           >
             <svg
@@ -322,16 +370,16 @@
       </div>
     </main>
 
-    <!-- Slide-out Menu -->
     <div
       id="sideMenu"
       class="fixed inset-y-0 right-0 z-50 w-80 bg-gray-900 border-l border-gray-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out overflow-y-auto"
     >
       <div class="flex flex-col h-full p-6">
-        <!-- Menu Header -->
         <div class="flex items-center justify-between mb-6">
           <h3 class="text-lg font-semibold text-white">Menu</h3>
           <button
+            type="button"
+            aria-label="Close menu"
             onclick="toggleMenu()"
             class="w-8 h-8 flex items-center justify-center hover:bg-gray-800 rounded-lg transition-colors"
           >
@@ -351,9 +399,7 @@
           </button>
         </div>
 
-        <!-- Menu Items -->
         <div class="space-y-2">
-          <!-- Player Section -->
           <div
             id="menuPlayerSection"
             class="mb-4 p-3 bg-gray-800/50 rounded-xl"
@@ -371,7 +417,6 @@
             </button>
           </div>
 
-          <!-- Stop Game -->
           <button
             onclick="
               stopGame();
@@ -389,7 +434,6 @@
             Stop Game
           </button>
 
-          <!-- Speed Control -->
           <div class="px-4 py-3">
             <p class="text-xs text-gray-500 mb-2">Game Speed</p>
             <div class="flex gap-2">
@@ -417,7 +461,29 @@
             </div>
           </div>
 
-          <!-- How to Play -->
+          <button
+            id="soundToggle"
+            type="button"
+            onclick="toggleSound()"
+            aria-pressed="true"
+            class="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-300 hover:bg-gray-800 rounded-xl transition-colors"
+          >
+            <svg
+              class="w-5 h-5 text-emerald-400"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11 5L6 9H2v6h4l5 4V5zM15.5 8.5a5 5 0 010 7"
+              />
+            </svg>
+            <span id="soundLabel">Sound &amp; vibration: On</span>
+          </button>
+
           <button
             onclick="
               toggleInstructions(true);
@@ -444,7 +510,6 @@
           </button>
         </div>
 
-        <!-- Credit -->
         <div class="mt-4 p-3 bg-gray-800/30 rounded-xl">
           <p class="text-xs text-gray-500 leading-relaxed">
             Inspired by
@@ -457,7 +522,6 @@
           </p>
         </div>
 
-        <!-- Social Links -->
         <div class="mt-auto pt-6 border-t border-gray-800">
           <p class="text-xs text-gray-500 mb-3">Connect with me</p>
           <div class="space-y-1">
@@ -498,7 +562,7 @@
               Instagram
             </a>
             <a
-              href="https://www.linkedin.com/in/amin-sadeghi-a34b873b1"
+              href="https://www.linkedin.com/in/mohammad-amin-sadeghi"
               target="_blank"
               class="flex items-center gap-3 px-4 py-2.5 text-gray-400 hover:text-white hover:bg-gray-800 rounded-xl transition-colors"
             >
@@ -514,16 +578,17 @@
       </div>
     </div>
 
-    <!-- Menu Backdrop -->
     <div
       id="menuBackdrop"
       onclick="toggleMenu()"
       class="fixed inset-0 z-40 bg-black/50 hidden transition-opacity duration-300"
     ></div>
 
-    <!-- Game Over Modal -->
     <div
       id="gameOverModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="gameOverTitle"
       class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300"
     >
       <div
@@ -542,16 +607,26 @@
             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"
           />
         </svg>
-        <h2 class="text-2xl font-bold text-white mb-1">Game Over</h2>
+        <h2 id="gameOverTitle" class="text-2xl font-bold text-white mb-1">
+          Game Over
+        </h2>
         <p class="text-gray-400 text-sm mb-2">Your Score</p>
         <p
           id="finalScore"
-          class="text-6xl font-bold text-emerald-400 mb-6 tabular-nums"
+          class="text-6xl font-bold text-emerald-400 mb-1 tabular-nums"
         >
           0
         </p>
+        <p
+          id="newRecordBadge"
+          class="hidden text-sm font-semibold text-amber-400 mb-2"
+        >
+          New record!
+        </p>
+        <p id="bestScoreText" class="text-sm text-gray-400 mb-6">Best: 0</p>
         <div class="space-y-3">
           <button
+            type="button"
             onclick="restartGame()"
             class="w-full py-3.5 px-6 bg-emerald-500 hover:bg-emerald-400 text-gray-950 rounded-xl font-bold text-base active:scale-95 transition-all duration-200 shadow-lg shadow-emerald-500/20"
           >
@@ -567,9 +642,11 @@
       </div>
     </div>
 
-    <!-- Instructions Modal -->
     <div
       id="instructionsPopup"
+      role="dialog"
+      aria-modal="true"
+      aria-label="How to play"
       class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-all duration-300"
     >
       <div
@@ -598,7 +675,7 @@
             <div>
               <p class="text-sm font-medium text-white">Swipe or Arrow Keys</p>
               <p class="text-xs text-gray-500 mt-0.5">
-                Use touch, WASD or arrows to move
+                Use touch, WASD or arrows to move. Space pauses.
               </p>
             </div>
           </div>
@@ -656,9 +733,11 @@
       </div>
     </div>
 
-    <!-- Name Modal -->
     <div
       id="nameModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Player name"
       class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4"
     >
       <div
@@ -671,9 +750,14 @@
           type="text"
           maxlength="20"
           placeholder="Player name..."
+          autocomplete="off"
+          enterkeyhint="done"
+          aria-label="Player name"
           class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white text-center focus:outline-none focus:border-emerald-500 transition-colors mb-4"
         />
         <button
+          id="saveNameBtn"
+          type="button"
           onclick="savePlayerName()"
           class="w-full py-3 px-6 bg-emerald-500 hover:bg-emerald-400 text-gray-950 rounded-xl font-bold active:scale-95 transition-all"
         >
@@ -682,7 +766,6 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <footer class="w-full max-w-[720px] px-4 py-4 text-center">
       <p class="text-xs text-gray-600">
         Built by
