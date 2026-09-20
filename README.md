@@ -1,4 +1,4 @@
-# Snakid v1.3.0
+# Snakid v1.4.0
 
 Welcome to **Snakid**, a modern classic Snake game!
 <br>
